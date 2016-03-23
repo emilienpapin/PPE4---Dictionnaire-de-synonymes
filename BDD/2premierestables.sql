@@ -1,11 +1,11 @@
 # -----------------------------------------------------------------------------
-#       TABLE : MOTS
+#       TABLE : MOT
 # -----------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS mots
+CREATE TABLE IF NOT EXISTS mot
  (
 	id INTEGER NOT NULL AUTO_INCREMENT,
-	mot VARCHAR(29) NOT NULL
+	libelle VARCHAR(29) NOT NULL
 	,PRIMARY KEY (id)
 	
  ) 
@@ -16,11 +16,14 @@ CREATE TABLE IF NOT EXISTS mots
 # -----------------------------------------------------------------------------
 
 
-CREATE TABLE IF NOT EXISTS synonymes
+CREATE TABLE IF NOT EXISTS synonyme
  (
-	idMot INTEGER NOT NULL AUTO_INCREMENT,
+	idMot INTEGER NOT NULL,
 	idSyn INTEGER NOT NULL
 	,PRIMARY KEY (idMot)
-	,FOREIGN KEY (idSyn) REFERENCES (id)
+	,PRIMARY KEY (idSyn)
+	,FOREIGN KEY (idMot) REFERENCES synonyme (id)
+	,FOREIGN KEY (idSyn) REFERENCES synonyme (id)
+	
 	
  ) 
