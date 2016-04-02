@@ -2,7 +2,7 @@
 
 try {
 
-  $connexion=new PDO('mysql:host=X.X.X.X; dbname=X.X', 'X.X', 'X');
+  $connexion=new PDO('mysql:host=X.X.X.X; dbname=x.X', 'X.X', 'X');
 
 }
 
