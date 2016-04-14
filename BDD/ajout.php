@@ -3,7 +3,7 @@
 ?>
 
 <html>
-    <head><title>Ajouter in mot</title></head>
+    <head><title>Ajouter un mot</title></head>
     <body>
       <form name="ajouter" method="post" action="ajout.php">
             Entrez le mot : <input type="text" name="mot"/> <br/>
