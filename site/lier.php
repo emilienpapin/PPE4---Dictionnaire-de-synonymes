@@ -1,5 +1,10 @@
 ﻿<?php
   include("connexion.php");
+  
+   session_start ();
+  
+  if 			($_SESSION['role'] == "lieur" )
+	{
 ?>
 
 <html>
@@ -87,4 +92,14 @@
               echo "Au moins un des mots n'existe pas. Ajouter des mots ?";
             }
   }
+  
+  
+  
+  
+	} 
+	else {
+              
+
+              echo "merde";
+            }
 ?>

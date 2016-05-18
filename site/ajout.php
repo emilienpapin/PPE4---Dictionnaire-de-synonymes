@@ -1,5 +1,11 @@
 <?php
   include("connexion.php");
+
+  
+  session_start ();
+  
+  if 			($_SESSION['role'] == "ajouteur" )
+	{
 ?>
 
 <html>
@@ -35,4 +41,13 @@
               echo "Le mot a été ajouté";
             }
   }
+  
+  
+	}
+	
+ else {
+              
+
+              echo "merde";
+            }
 ?>
