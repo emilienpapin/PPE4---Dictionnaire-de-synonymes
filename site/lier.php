@@ -1,105 +1,111 @@
-﻿<?php
-  include("connexion.php");
+<?php
+
+include("connexion.php");
+?>
+<html>
+	<head>
+		<title>Syn4Com - Dictionnaire</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="skels-layers-fixed">
+				<h1><strong><a href="index.html">Syn4Com</a></strong>     - Emilien Papin</h1>
+				<nav id="nav">
+					<ul>
+					
+				
+						
+						<li><a href="recherche.php">Dictionnaire</a></li>
+						<li><a href="inscription.php">Inscription</a></li>
+						<li><a href="ajout.php">Ajouter</a></li>
+						<li><a href="lier.php">Lier</a></li>
+						
+					</ul>
+				</nav>
+			</header>
+
+		
+
+			<!-- Three -->
+				<section id="three" class="wrapper style1">
+					<div class="container">
+						<header class="major special">
+						<h2>Lier deux mots : </h2><br>
+							
+							
+						</header>
+						</div>
+						
+						<section id="one" class="wrapper style1">
+					<div class="container 75%">
+						<div class="row 200%">
+							<div class="6u 12u$(medium)">
+								<header class="major">
+								<?php
+									 include("connexion.php");
+session_start();
   
-   session_start ();
+  
   
   if 			($_SESSION['role'] == "lieur" )
 	{
 ?>
 
-<html>
-  <head><title>Ajouter un mot</title></head>
-    <body>
-      <form name="lier" method="post" action="lier.php">
+  <form name="lier" method="post" action="traitement_lier.php">
             Entrez le mot : <input type="text" name="mot"/> <br/>
             Entrez le synonyme : <input type="text" name="syn"/> <br/>
             <input type="submit" name="valider" value="OK"/>
       </form>
-    </body>
-</html>
-
-<?php
-  if(isset($_POST['valider'])){
-            $mot=$_POST['mot'];
-            $syn=$_POST['syn'];
-
-//vérification de l'existence du premier mot
-            $verificationMot=$connexion->query("
-            SELECT libelle
-            FROM mot
-            WHERE libelle='$mot'
-            ");
-            $countMot=$verificationMot->rowCount();
-
-//vérification du deuxième mot
-            $verificationSyn=$connexion->query("
-            SELECT libelle
-            FROM mot
-            WHERE libelle='$syn'
-            ");
-            $countSyn=$verificationSyn->rowCount();
-
-//si les mots existent dans la bdd
-            if ($countMot==1 && $countSyn==1){
-//vérifier qu'ils ne sont pas déjà liés
-//??? code ???//vérification "déjà lié" : selectionner idmot et idsyn des deux mots saisis (A FAIRE)
-// lier... -> selectionner id , l'assigner dans une variable et faire un insert
-
-              $requete1=$connexion->query("
-              SELECT id
-              FROM mot
-              WHERE libelle='$mot';
-              ");
-
-				while ($recupIDmot = $requete1->fetch(PDO::FETCH_ASSOC))
-{
-    $idMot = $recupIDmot['id'];
-}
-            
-              
-              
-
-              $requete2=$connexion->query("
-              SELECT id
-              FROM mot
-              WHERE libelle='$syn';
-              ");
-             
-		while ($recupIDsyn = $requete2->fetch(PDO::FETCH_ASSOC))
-{
-    $idSyn = $recupIDsyn['id'];
-}
-           
-              
-
-              $connexion->query("
-                INSERT INTO synonyme (idMot, idSyn) values ('$idMot', '$idSyn');
-              ");
-
-              $connexion->query("
-                INSERT INTO synonyme (idMot, idSyn) values ('$idSyn', '$idMot');
-              ");
-
-
-
-              echo "Les mots sont désormais définis comme étant synonymes.";
-
-            }
-
-
-// si les mots n'existent pas dans la bdd
-            else {
-              echo "Au moins un des mots n'existe pas. Ajouter des mots ?";
-            }
-  }
-  
-  
-  
-  
-	} 
+	  
+	  <?php
+	  
+	}
+	
 	else {
-              
+		
+		
+		print 'Vous ne pouvez pas lier deux mots :( ';
+	}
+									
+			?>					
+								</header>
+							</div>
+							<div class="6u$ 12u$(medium)">
+					
+							</div>
+						</div>
+					</div>
+				</section>
+						
+							
+							
+							<!-- Tableau -->
+							
+</section>
+<!-- Fin tableau -->
+								
+							
+						
+					
+				
 
-              echo "merde";
-            }
-?>
+			<!-- Four -->
+				
+		
+
+	</body>
+</html>

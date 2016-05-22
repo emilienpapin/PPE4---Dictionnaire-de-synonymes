@@ -33,7 +33,6 @@ include("connexion.php");
 						<li><a href="inscription.php">Inscription</a></li>
 						<li><a href="ajout.php">Ajouter</a></li>
 						<li><a href="lier.php">Lier</a></li>
-						
 					</ul>
 				</nav>
 			</header>
@@ -44,7 +43,7 @@ include("connexion.php");
 				<section id="three" class="wrapper style1">
 					<div class="container">
 						<header class="major special">
-						<h2>Ajouter un mot</h2><br>
+						<h2>Rechercher des synonymes</h2><br>
 							
 							
 						</header>
@@ -55,39 +54,57 @@ include("connexion.php");
 						<div class="row 200%">
 							<div class="6u 12u$(medium)">
 								<header class="major">
-									<?php
-									 include("connexion.php");
-
-  
-  session_start();
-  
-  if 			($_SESSION['role'] == "ajouteur" )
-	{
-?>
-
- <form name="ajouter" method="post" action="traitement_ajout.php">
+									
+									<p><b>
+			<form name="recherche" method="post" action="recherche.php">
             Entrez le mot : <input type="text" name="mot"/> <br/>
             <input type="submit" name="valider" value="OK"/>
-      </form>
-	  
-	  <?php
-	  
-	}
-	
-	else {
-		
-		
-		print 'Vous ne pouvez pas ajouter de mot :( ';
-	}
-									
-			?>						
-									
-									
-									
+        </form>
+		</b></p>
 								</header>
 							</div>
 							<div class="6u$ 12u$(medium)">
-					
+							<?php
+  if(isset($_POST['valider'])){
+            $mot=$_POST['mot'];
+          
+		  
+		    $requete1=$connexion->query("
+			SELECT id
+			FROM mot
+			WHERE libelle='$mot';
+            ");
+while ($LidMot = $requete1->fetch(PDO::FETCH_ASSOC))
+{
+    $idMot = $LidMot['id'];
+}
+			
+			$requete2=$connexion->query("
+			SELECT idSyn
+			FROM synonyme
+			WHERE idMot=$idMot;
+			");
+			
+while ($LidSyn = $requete2->fetch(PDO::FETCH_ASSOC))
+{
+    $idSyn=$LidSyn['idSyn']; 
+   
+  $synonymes=$connexion->query("SELECT libelle FROM mot WHERE id=$idSyn;");
+  
+  while ($synonyme = $synonymes->fetch(PDO::FETCH_ASSOC))
+{
+  echo $synonyme['libelle']; ?><html><br></html><?php
+}			
+}		
+		
+		
+		
+		
+  }
+  
+  
+  
+?>
 							</div>
 						</div>
 					</div>
@@ -106,7 +123,18 @@ include("connexion.php");
 				
 
 			<!-- Four -->
-				
+				<section id="four" class="wrapper style3 special">
+					<div class="container">
+						<!-- <header class="major">
+							<h2></h2>
+							<p></p>
+						</header> -->
+						<ul class="actions">
+							<li><a href="#" class="button special big">Haut de page</a></li>
+						</ul>
+					</div>
+				</section>
+
 		
 
 	</body>

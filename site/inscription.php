@@ -4,7 +4,7 @@ include("connexion.php");
 ?>
 <html>
 	<head>
-		<title>Syn4Com - Dictionnaire</title>
+		<title>Syn4Com - Inscription</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -12,7 +12,7 @@ include("connexion.php");
 		<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
+		
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -23,7 +23,7 @@ include("connexion.php");
 
 		<!-- Header -->
 			<header id="header" class="skels-layers-fixed">
-				<h1><strong><a href="index.html">Syn4Com</a></strong>     - Emilien Papin</h1>
+			<h1><strong><a href="index.html">Syn4Com</a></strong>     - Emilien Papin</h1>
 				<nav id="nav">
 					<ul>
 					
@@ -33,7 +33,6 @@ include("connexion.php");
 						<li><a href="inscription.php">Inscription</a></li>
 						<li><a href="ajout.php">Ajouter</a></li>
 						<li><a href="lier.php">Lier</a></li>
-						
 					</ul>
 				</nav>
 			</header>
@@ -44,7 +43,7 @@ include("connexion.php");
 				<section id="three" class="wrapper style1">
 					<div class="container">
 						<header class="major special">
-						<h2>Ajouter un mot</h2><br>
+						<h2>Vous inscrire :</h2><br>
 							
 							
 						</header>
@@ -55,41 +54,28 @@ include("connexion.php");
 						<div class="row 200%">
 							<div class="6u 12u$(medium)">
 								<header class="major">
-									<?php
-									 include("connexion.php");
-
-  
-  session_start();
-  
-  if 			($_SESSION['role'] == "ajouteur" )
-	{
-?>
-
- <form name="ajouter" method="post" action="traitement_ajout.php">
-            Entrez le mot : <input type="text" name="mot"/> <br/>
-            <input type="submit" name="valider" value="OK"/>
-      </form>
-	  
-	  <?php
-	  
-	}
+									
+									<p><b>
+			<form name="recherche" method="post" action="traitement_inscription.php">
+            Login : <input type="text" name="login"/> <br/>
+           
+       
+		
 	
-	else {
+            Passe  : <input type="password" name="mdp"/> <br/>
+
+           
 		
-		
-		print 'Vous ne pouvez pas ajouter de mot :( ';
-	}
-									
-			?>						
-									
-									
-									
+        
+			Rôle :<br> 
+			<INPUT type="radio" name="role" value="ajouteur" checked> Ajouteur
+			<INPUT type="radio" name="role" value="lieur"> Lieur
+			<br><br>
+			 <input type="submit" name="valider" value="OK"/>
+		</form>
+		</b></p>
 								</header>
-							</div>
-							<div class="6u$ 12u$(medium)">
-					
-							</div>
-						</div>
+							
 					</div>
 				</section>
 						
@@ -106,8 +92,6 @@ include("connexion.php");
 				
 
 			<!-- Four -->
-				
-		
-
+			
 	</body>
 </html>
